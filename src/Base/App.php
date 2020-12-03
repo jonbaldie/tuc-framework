@@ -19,11 +19,6 @@ class App extends SlimApp
     protected $registered_providers = [];
 
     /**
-     * @var object[]
-     */
-    protected $singletons = [];
-
-    /**
      * @param $dir
      * @return void
      */
@@ -84,26 +79,17 @@ class App extends SlimApp
      */
     public function make($mixed)
     {
-        if (isset($this->singletons[$mixed])) {
-            return $this->singletons[$mixed];
-        }
-
         return $this->getContainer()->get($mixed);
     }
 
     /**
-     * @param $mixed
-     * @param $concretion
+     * @param $key
+     * @param $value
+     * @return void
      */
-    public function singleton($mixed, $concretion = null)
+    public function bind($key, $value): void
     {
-        if ($concretion !== null) {
-            $this->singletons[$mixed] = $this->make($concretion);
-
-            return $this;
-        }
-
-        return $this->singletons[$mixed];
+        $this->getContainer()->set($key, $value);
     }
 
     /**
