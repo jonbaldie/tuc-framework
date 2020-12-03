@@ -105,4 +105,24 @@ class App extends SlimApp
 
         return $this->singletons[$mixed];
     }
+
+    /**
+     * @param Config $config
+     * @return void
+     */
+    public function setConfig(Config $config): void
+    {
+        $this->config = $config;
+    }
+
+    // @todo getConfig method
+
+    /**
+     * @param string $name
+     * @return mixed
+     */
+    public function config(string $name)
+    {
+        return $this->config->get($name);
+    }
 }

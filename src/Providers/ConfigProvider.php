@@ -21,5 +21,7 @@ class ConfigProvider implements Provider
             $array = require $config_file;
             $config->register(basename($config_file), $array);
         }
+
+        $app->setConfig($config);
     }
 }
