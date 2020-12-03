@@ -1,4 +1,8 @@
 {
+    "name": "jonbaldie/tuc-framework",
+    "description": "A PHP skeleton project based on the Slim framework.",
+    "type": "library",
+    "license": "MIT",
     "require": {
         "slim/slim": "^4.7",
         "slim/psr7": "^1.3",
