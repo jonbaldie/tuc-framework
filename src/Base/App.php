@@ -9,6 +9,11 @@ use Tuc\Providers\Provider;
 class App extends SlimApp
 {
     /**
+     * @var string
+     */
+    protected $dir;
+
+    /**
      * @var Provider[]
      */
     protected $registered_providers = [];
@@ -17,6 +22,23 @@ class App extends SlimApp
      * @var object[]
      */
     protected $singletons = [];
+
+    /**
+     * @param $dir
+     * @return void
+     */
+    public function setContext(string $dir): void
+    {
+        $this->dir = $dir;
+    }
+
+    /**
+     * @return string
+     */
+    public function getContext(): string
+    {
+        return $this->dir;
+    }
 
     /**
      * @param Provider $provider
