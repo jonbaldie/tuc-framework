@@ -19,16 +19,24 @@ class FilesProvider implements Provider
     {
         $local = new LocalFilesystemAdapter($app->config('files.local'));
 
-        if ($app->config('s3')) {
-            $s3 = new AwsS3V3Adapter(
-                new S3Client($app->config('files.s3.options')),
-                $app->config('files.s3.bucket'),
-                $app->config('files.s3.prefix')
-            );
+        $app->bind('storage', new FileSystem($local));
+
+        if ($app->config('files.s3')) {
+            if ($app->config('files.s3.async')) {
+                $s3 = new AsyncAwsS3Adapter(
+                    new SimpleS3Client($app->config('files.s3.options')),
+                    $app->config('files.s3.bucket'),
+                    $app->config('files.s3.prefix')
+                );
+            } else {
+                $s3 = new AwsS3V3Adapter(
+                    new S3Client($app->config('files.s3.options')),
+                    $app->config('files.s3.bucket'),
+                    $app->config('files.s3.prefix')
+                );
+            }
 
             $app->bind('s3', new FileSystem($s3));
         }
-
-        $app->bind('storage', new FileSystem($local));
     }
 }
