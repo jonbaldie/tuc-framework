@@ -3,6 +3,11 @@
 namespace Tuc\Providers;
 
 use Tuc\Base\App;
+use Whoops\Handler\Handler;
+use Whoops\Handler\PlainTextHandler;
+use Whoops\Handler\PrettyPageHandler;
+use Whoops\Run;
+use function php_sapi_name;
 
 class ErrorProvider implements Provider
 {
@@ -13,10 +18,22 @@ class ErrorProvider implements Provider
      */
     public function boot(App $app): void
     {
-        if (class_exists(\Whoops\Run::class)) {
-            $whoops = new \Whoops\Run;
-            $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
+        if (class_exists(Run::class)) {
+            $whoops = new Run;
+            $whoops->pushHandler($this->handler());
             $whoops->register();
         }
+    }
+
+    /**
+     * @return Handler
+     */
+    protected function handler(): Handler
+    {
+        if (php_sapi_name() === 'cli') {
+            return new PlainTextHandler;
+        }
+
+        return new PrettyPageHandler;
     }
 }

@@ -68,7 +68,7 @@ class DataProvider implements Provider
     {
         if (isset($connection['url'])) {
             $params = [
-                'url' => $connection['url']
+                'url' => $connection['url'],
             ];
         } else {
             $params = [
