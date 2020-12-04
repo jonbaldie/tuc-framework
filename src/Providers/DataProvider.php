@@ -2,9 +2,11 @@
 
 namespace Tuc\Providers;
 
+use Doctrine\Common\Cache\PhpFileCache;
 use Doctrine\DBAL\DriverManager;
+use Doctrine\DBAL\Configuration;
 use Doctrine\DBAL\Connection;
-use Doctrine\ORM\Configuration;
+use Doctrine\ORM\Configuration as OrmConfiguration;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Mapping\Driver\StaticPHPDriver as Driver;
 use Tuc\Base\App;
@@ -45,9 +47,9 @@ class DataProvider implements Provider
          *
          * https://www.doctrine-project.org/projects/doctrine-orm/en/2.7/reference/php-mapping.html#static-function
          */
-        $em = EntityManager::create($conn, $config);
-        $driver = new Driver($app->getContext() . $app->config('data.models.location'));
-        $em->getConfiguration()->setMetadataDriverImpl($driver);
+        $orm_config = new OrmConfiguration;
+        $orm_config->setMetaDataDriverImpl(new Driver($app->config('data.models.location'));
+        $em = EntityManager::create($conn, $orm_config);
 
         // Tell the models which EntityManager to use by default
         Model::setEntityManager($em);
