@@ -2,6 +2,8 @@
 
 namespace Tuc\Providers;
 
+use Symfony\Component\Mailer\Transport;
+use Symfony\Component\Mailer\Mailer;
 use Tuc\Base\App;
 
 class MailProvider implements Provider
@@ -13,6 +15,30 @@ class MailProvider implements Provider
      */
     public function boot(App $app): void
     {
-        // @todo MailProvider
+        if ($smtp = $app->config('mail.smtp')) {
+            $dsn = $smtp['dsn'] ?: sprintf('smtp://%s:%s@%s:%s', ...[
+                $smtp['user'],
+                $smtp['pass'],
+                $smtp['host'],
+                $smtp['port'],
+            ]);
+
+            $app->bind('smtp', new Mailer(Transport::fromDsn($dsn)));
+        }
+
+        if ($ses = $app->config('mail.ses')) {
+            $dsn = $ses['dsn'] ?: sprintf('ses+https://%s:%s@default', ...[
+                urlencode($ses['aws_access_key_id']),
+                urlencode($ses['aws_secret_key']),
+            ]);
+
+            $app->bind('ses', new Mailer(Transport::fromDsn($dsn)));
+        }
+
+        if ($signing = $app->config('mail.signing')) {
+            $signer = new SMimeSigner($signing['cert'], $signing['key']);
+
+            $app->bind('signer', $signer);
+        }
     }
 }

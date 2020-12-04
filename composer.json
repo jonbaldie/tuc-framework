@@ -21,7 +21,10 @@
         "symfony/cache": "^5.2",
         "symfony/mailer": "^5.2",
         "doctrine/orm": "^2.7.4",
-        "ramsey/uuid": "^4.1"
+        "ramsey/uuid": "^4.1",
+        "slim/php-view": "^3.0",
+        "league/flysystem-aws-s3-v3": "^2.0",
+        "symfony/amazon-mailer": "^5.2"
     },
     "require-dev": {
         "filp/whoops": "^2",
