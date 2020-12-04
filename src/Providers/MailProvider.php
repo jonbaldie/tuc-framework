@@ -15,6 +15,10 @@ class MailProvider implements Provider
      */
     public function boot(App $app): void
     {
+        if ($app->config('mail.sendmail')) {
+            $app->bind('sendmail', new Mailer(Transport::fromDsn('sendmail://default')));
+        }
+
         if ($smtp = $app->config('mail.smtp')) {
             $dsn = $smtp['dsn'] ?: sprintf('smtp://%s:%s@%s:%s', ...[
                 $smtp['user'],
@@ -35,6 +39,11 @@ class MailProvider implements Provider
             $app->bind('ses', new Mailer(Transport::fromDsn($dsn)));
         }
 
+        if ($default = $app->config('mail.default') && $app->bound($default)) {
+            $app->bind('mail', $app->make($default));
+        }
+
+        // https://symfony.com/doc/current/mailer.html#signing-and-encrypting-messages
         if ($signing = $app->config('mail.signing')) {
             $signer = new SMimeSigner($signing['cert'], $signing['key']);
 

@@ -93,6 +93,15 @@ class App extends SlimApp
     }
 
     /**
+     * @param $key
+     * @return bool
+     */
+    public function bound($key): bool
+    {
+        return $this->getContainer()->has($key);
+    }
+
+    /**
      * @param Config $config
      * @return void
      */
