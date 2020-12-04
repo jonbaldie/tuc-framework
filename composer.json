@@ -13,18 +13,21 @@
         "laminas/laminas-diactoros": "^2.5",
         "league/flysystem": "^2.0",
         "league/omnipay": "^3",
-        "doctrine/dbal": "^3.0",
+        "doctrine/dbal": "^2.9.3",
         "php-di/php-di": "^6.3",
         "symfony/console": "^5.2",
         "2amigos/2fa-library": "^2.0",
         "symfony/dotenv": "^5.2",
         "symfony/cache": "^5.2",
-        "symfony/mailer": "^5.2"
+        "symfony/mailer": "^5.2",
+        "doctrine/orm": "^2.7.4",
+        "ramsey/uuid": "^4.1"
     },
     "require-dev": {
         "filp/whoops": "^2",
         "phpunit/phpunit": "^9",
-        "symfony/var-dumper": "^5.2"
+        "symfony/var-dumper": "^5.2",
+        "phpunit/php-code-coverage": "^9.2"
     },
     "autoload": {
         "psr-4": {
