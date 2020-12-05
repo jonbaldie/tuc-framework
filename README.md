@@ -1,6 +1,6 @@
 # tuc
 
-[![Build Status](https://travis-ci.org/jonbaldie/tuc-framework.svg?branch=master)](https://travis-ci.org/jonbaldie/tuc-framework)
+[![Build Status](https://travis-ci.org/jonbaldie/tuc-framework.svg?branch=master)](https://travis-ci.org/jonbaldie/tuc-framework) [![Version](https://img.shields.io/packagist/v/jonbaldie/tuc-framework)](https://img.shields.io/packagist/v/jonbaldie/tuc-framework) [![Licence](https://img.shields.io/packagist/l/jonbaldie/tuc-framework)](https://img.shields.io/packagist/l/jonbaldie/tuc-framework)
 
 A PHP skeleton project based on the Slim framework.
 
