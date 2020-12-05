@@ -1,5 +1,7 @@
 # tuc
 
+[![Build Status](https://travis-ci.org/jonbaldie/tuc-framework.svg?branch=master)](https://travis-ci.org/jonbaldie/tuc-framework)
+
 A PHP skeleton project based on the Slim framework.
 
 &copy; Jonathan Baldie, jon@jonbaldie.com
