@@ -11,3 +11,17 @@ A PHP skeleton project based on the Slim framework.
 This is the repo for the project's main library files.
 
 For the skeleton project, go to https://github.com/jonbaldie/tuc
+
+---
+
+@todo
+
+- CacheTest
+- DataTest
+- FilesTest
+- HttpTest
+- MailTest
+- ProvidersTest
+- Console drivers
+- Queue drivers
+- QueueTest
