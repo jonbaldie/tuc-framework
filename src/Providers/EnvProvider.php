@@ -2,6 +2,7 @@
 
 namespace Tuc\Providers;
 
+use Symfony\Component\Dotenv\Dotenv;
 use Tuc\Base\App;
 
 class EnvProvider implements Provider
@@ -13,6 +14,6 @@ class EnvProvider implements Provider
     public function boot(App $app): void
     {
         $dotenv = new Dotenv;
-        $dotenv->load($app->context() . '/.env');
+        $dotenv->load($app->getContext() . '/.env');
     }
 }
