@@ -21,6 +21,8 @@ class Config
     public function register(string $name, array $set): void
     {
         $this->configs[$name] = $this->flatten($set);
+
+        $this->configs = $this->flatten($this->configs);
     }
 
     /**

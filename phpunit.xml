@@ -1,18 +1,12 @@
-<phpunit>
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd">
+    <coverage>
+        <report>
+            <clover outputFile="coverage/coverage.xml"/>
+        </report>
+    </coverage>
     <testsuite name="tests">
         <directory>tests</directory>
     </testsuite>
-    <coverage cacheDirectory="/src"
-          includeUncoveredFiles="true"
-          processUncoveredFiles="true"
-          pathCoverage="false"
-          ignoreDeprecatedCodeUnits="true"
-          disableCodeCoverageIgnore="true">
-        <include>
-            <directory suffix=".php">src</directory>
-        </include>
-        <report>
-            <html outputDirectory="coverage" lowUpperBound="50" highLowerBound="90"/>
-        </report>
-    </coverage>
+    <logging/>
 </phpunit>

@@ -31,7 +31,8 @@
         "filp/whoops": "^2",
         "phpunit/phpunit": "^9",
         "symfony/var-dumper": "^5.2",
-        "phpunit/php-code-coverage": "^9.2"
+        "phpunit/php-code-coverage": "^9.2",
+        "php-coveralls/php-coveralls": "^2.4"
     },
     "autoload": {
         "psr-4": {

@@ -63,6 +63,29 @@ class BaseTest extends TestCase
         $app = AppFactory::create();
         $a = $app->make(AuthProvider::class);
         $this->assertInstanceOf(AuthProvider::class, $a);     
-    }   
+    }
+
+    public function testConfig()
+    {
+        $config = new Config;
+        $config->register('foo', [
+            'yah' => [
+                'yee',
+            ],
+        ]);
+        $this->assertEquals('yee', $config->get('foo.yah.0'));
+    }
+
+    public function testAppConfig()
+    {
+        AppFactory::setContainer(new Container);
+        $app = AppFactory::create();
+        $config = new Config;
+        $config->register('foo', [
+            'bar' => 'bat',
+        ]);
+        $app->setConfig($config);
+        $this->assertEquals('bat', $app->config('foo.bar'));
+    }
 }
 
